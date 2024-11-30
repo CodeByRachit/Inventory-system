@@ -1,0 +1,26 @@
+Create database inventory;
+Use inventory;
+
+Create table customer(Cid int primary key,cname varchar (30),cadd varchar (30),mobile char (10));
+
+
+
+
+Create table item(ino int primary key,iname varchar (30),prate float,srate float,qoh int);
+
+
+
+
+ Create table supplier (Sid int primary key,sname varchar (30),sadd varchar(30),mobile char(10));
+
+
+
+
+ Create table smaster(saleid int primary key,sdate date,cid int,total float, foreign key(cid) references customer (cid)); 
+
+Create table pmaster(pid int primary key,pdate date,Sid int,total float, foreign key(Sid) references supplier (Sid));
+
+
+create table sdetail(saleid int primary key,ino int,qty int,rate float,total int,foreign key(ino) references item(ino));
+
+create table pdetail(pid int primary key,ino int,qty int,rate float,total int,foreign key(ino) references item(ino));
